@@ -11,7 +11,8 @@ export const createAndAddBall = (game: Engine): Actor => {
     color: Color.Red,
   });
   // Start the serve after a second
-  const ballSpeed = vec(200, 200);
+  const BALL_SPEED = 350;
+  const ballSpeed = vec(BALL_SPEED, BALL_SPEED);
   setTimeout(() => {
     // Set the velocity in pixels per second
     ball.vel = ballSpeed;

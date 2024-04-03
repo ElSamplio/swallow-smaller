@@ -1,6 +1,12 @@
-import { Actor } from "excalibur";
+import { Actor, Engine } from "excalibur";
 
-export const ballCollidingWithBrick = (ball: Actor, bricks: Actor[]) => {
+export var removedBricks = 0;
+
+export const ballCollidingWithBrick = (
+  ball: Actor,
+  bricks: Actor[],
+  game: Engine
+) => {
   // On collision remove the brick, bounce the ball
   let colliding = false;
   ball.on("collisionstart", function (ev) {
@@ -8,7 +14,8 @@ export const ballCollidingWithBrick = (ball: Actor, bricks: Actor[]) => {
       // kill removes an actor from the current scene
       // therefore it will no longer be drawn or updated
       ev.other.kill();
-    } 
+      removedBricks++;
+    }
     // reverse course after any collision
     // intersections are the direction body A has to move to not be clipping body B
     // `ev.content.mtv` "minimum translation vector" is a vector `normalize()` will make the length of it 1
@@ -29,5 +36,9 @@ export const ballCollidingWithBrick = (ball: Actor, bricks: Actor[]) => {
   ball.on("collisionend", () => {
     // ball has separated from whatever object it was colliding with
     colliding = false;
+    if (removedBricks === bricks.length) {
+      alert("You won!");
+      game.stop();
+    }
   });
 };

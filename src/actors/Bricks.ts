@@ -1,6 +1,7 @@
 import { Actor, CollisionType, Color, Engine } from "excalibur";
 
 export const createAndAddBricks = (game: Engine): Actor[] => {
+  console.log("creating BRICKS ", { game });
   // Build Bricks
   // Padding between bricks
   const padding = 20; // px

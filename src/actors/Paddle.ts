@@ -1,6 +1,7 @@
 import { Actor, CollisionType, Color, Engine } from "excalibur";
 
 export const createAndAddPaddle = (game: Engine): Actor => {
+  console.log("PADDEL> ", { game });
   // Create an actor with x position of 150px,
   // y position of 40px from the bottom of the screen,
   // width of 200px, height and a height of 20px
